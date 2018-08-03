@@ -13,8 +13,8 @@ class historial_pacientes extends Model
     public function usuario(){
     	return $this->hasMany('App\User', 'id_usuario');
     }
-    public function paciente(){
-    	return $this->belongsTo('App\pacientes', 'id_paciente' , 'id_paciente');
+    public function pacientes(){
+    	return $this->belongsTo('App\pacientes', 'id_paciente');
     }
     public function motivo(){
     	return $this->belongsTo('App\motivos', 'id_motivo');

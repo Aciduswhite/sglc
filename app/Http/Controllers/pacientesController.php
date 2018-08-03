@@ -86,7 +86,8 @@ class pacientesController extends Controller
                 'id_motivo' => '1',
                 'fecha' => date("Y-m-d H:i:s"),
                 'peso' => $inputs['peso'],
-                'estatura' => $inputs['estatura'],);
+                'estatura' => $inputs['estatura'],
+            );
             historial_pacientes::create($historial);
             
         }
@@ -112,11 +113,19 @@ class pacientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         $paciente = pacientes::findorfail($id);
-        $historial= historial_pacientes::findorfail($paciente->id_paciente);
-        $datos = array_merge($paciente,$historial);
-        return view('paciente.registrar')->with('datos', $datos);
+        $historial= historial_pacientes::where('id_paciente',$paciente->id_paciente)->get();
+        foreach ($historial as $h){
+            $histo = $h;
+        };
+        $data = [
+            'datos' => $paciente,
+            'datos2' => $histo,
+
+        ];
+        return view('paciente.registrar', $data);
+        //return view('paciente.registrar')->with('datos', $datos);
     }
 
     /**
@@ -128,8 +137,56 @@ class pacientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $inputs = Request::all();
+         $paciente = array(
+            'nombre'=>$inputs['nombre'],
+            'app_paterno'=>$inputs['app_paterno'],
+            'app_materno'=>$inputs['app_materno'],
+            'curp'=>$inputs['curp'],
+            'tel_casa'=>$inputs['tel_casa'],
+            'tel_celular'=>$inputs['tel_celular'],
+            'dir_calle'=>$inputs['dir_calle'],
+            'dir_colonia'=>$inputs['dir_colonia'],
+            'dir_numero'=>$inputs['dir_numero'],
+            'fecha_nacimiento'=>$inputs['fecha_nacimiento'],
+            'fecha_registro'=> date("Y-m-d H:i:s"),
+            'rfc'=>$inputs['rfc'],
+        );
+        $rules =  array(
+            'nombre'=> 'required|min:4',
+            'app_paterno'=> 'required|min:4',
+            'app_materno'=> 'required|min:4',
+            'fecha_nacimiento'=> 'required',
+            'tel_celular'=> 'required',
+            );
+
+        $messages = array(
+            'required' => 'Este campo es obligatorio',
+            'min' => 'Requiere un mínimo de 4 caracteres',
+            );
+
+        $validar = Validator::make($inputs, $rules, $messages);
+        Request::flash();
+         if($validar->fails()){
+            return Redirect::back()->withInput(Request::all())->withErrors($validar);
+        }else {
+            $data = pacientes::findOrFail($id);
+            $data->fill($paciente)->save();
+            $historial=array(
+                'id_paciente' => $id,
+                'id_usuario' => Auth::user()->id_usuario,
+                'id_motivo' => '2',
+                'fecha' => date("Y-m-d H:i:s"),
+                'estatura' => $inputs['estatura'],
+                'peso' => $inputs['peso'],
+                );
+
+            historial_pacientes::create($historial);
+            
+        }
+        return Redirect::to('pacientes');
     }
+    
 
     /**
      * Remove the specified resource from storage.
