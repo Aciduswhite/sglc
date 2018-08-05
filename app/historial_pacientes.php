@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class historial_pacientes extends Model
 {
     protected $table = 'historial_pacientes';
-    protected $fillable = ['id_paciente','id_usuario','id_motivo','fecha','	peso','estatura'];
+    protected $fillable = ['id_paciente','id_usuario','id_motivo','fecha','peso','estatura'];
     public $timestamps = false;
 
     public function usuario(){

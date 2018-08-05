@@ -5,6 +5,12 @@ use App\User;
 use App\pacientes;
 use App\estudios;
 use App\historial_pacientes;
+Use App\ordenes;
+Use App\orden_estudio;
+Use App\historial_creacion_orden;
+Use App\valores_resultado;
+Use App\resultados;
+Use App\campos_estudio;
 use Request;
 
 //use Illuminate\Http\Request;
@@ -31,9 +37,9 @@ class pacientesController extends Controller
      */
     public function create()
     {
-         $datos = new pacientes();
-         return view('paciente.registrar')->with('datos', $datos);
-    }
+     $datos = new pacientes();
+     return view('paciente.registrar')->with('datos', $datos);
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -65,16 +71,16 @@ class pacientesController extends Controller
             'app_materno'=> 'required',
             'fecha_nacimiento'=> 'required',
             'tel_celular'=> 'required',
-            );
+        );
 
         $messages = array(
             'required' => 'Este campo es obligatorio',
             'min' => 'Requiere un mínimo de 4 caracteres'
-            );
+        );
 
         $validar = Validator::make($inputs, $rules, $messages);
         Request::flash();
-         if($validar->fails()){
+        if($validar->fails()){
             return Redirect::back()->withInput(Request::all())->withErrors($validar);
         }else {
             pacientes::create($paciente);
@@ -137,56 +143,56 @@ class pacientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $inputs = Request::all();
-         $paciente = array(
-            'nombre'=>$inputs['nombre'],
-            'app_paterno'=>$inputs['app_paterno'],
-            'app_materno'=>$inputs['app_materno'],
-            'curp'=>$inputs['curp'],
-            'tel_casa'=>$inputs['tel_casa'],
-            'tel_celular'=>$inputs['tel_celular'],
-            'dir_calle'=>$inputs['dir_calle'],
-            'dir_colonia'=>$inputs['dir_colonia'],
-            'dir_numero'=>$inputs['dir_numero'],
-            'fecha_nacimiento'=>$inputs['fecha_nacimiento'],
-            'fecha_registro'=> date("Y-m-d H:i:s"),
-            'rfc'=>$inputs['rfc'],
+     $inputs = Request::all();
+     $paciente = array(
+        'nombre'=>$inputs['nombre'],
+        'app_paterno'=>$inputs['app_paterno'],
+        'app_materno'=>$inputs['app_materno'],
+        'curp'=>$inputs['curp'],
+        'tel_casa'=>$inputs['tel_casa'],
+        'tel_celular'=>$inputs['tel_celular'],
+        'dir_calle'=>$inputs['dir_calle'],
+        'dir_colonia'=>$inputs['dir_colonia'],
+        'dir_numero'=>$inputs['dir_numero'],
+        'fecha_nacimiento'=>$inputs['fecha_nacimiento'],
+        'fecha_registro'=> date("Y-m-d H:i:s"),
+        'rfc'=>$inputs['rfc'],
+    );
+     $rules =  array(
+        'nombre'=> 'required|min:4',
+        'app_paterno'=> 'required|min:4',
+        'app_materno'=> 'required|min:4',
+        'fecha_nacimiento'=> 'required',
+        'tel_celular'=> 'required',
+    );
+
+     $messages = array(
+        'required' => 'Este campo es obligatorio',
+        'min' => 'Requiere un mínimo de 4 caracteres',
+    );
+
+     $validar = Validator::make($inputs, $rules, $messages);
+     Request::flash();
+     if($validar->fails()){
+        return Redirect::back()->withInput(Request::all())->withErrors($validar);
+    }else {
+        $data = pacientes::findOrFail($id);
+        $data->fill($paciente)->save();
+        $historial=array(
+            'id_paciente' => $id,
+            'id_usuario' => Auth::user()->id_usuario,
+            'id_motivo' => '2',
+            'fecha' => date("Y-m-d H:i:s"),
+            'estatura' => $inputs['estatura'],
+            'peso' => $inputs['peso'],
         );
-        $rules =  array(
-            'nombre'=> 'required|min:4',
-            'app_paterno'=> 'required|min:4',
-            'app_materno'=> 'required|min:4',
-            'fecha_nacimiento'=> 'required',
-            'tel_celular'=> 'required',
-            );
 
-        $messages = array(
-            'required' => 'Este campo es obligatorio',
-            'min' => 'Requiere un mínimo de 4 caracteres',
-            );
+        historial_pacientes::create($historial);
 
-        $validar = Validator::make($inputs, $rules, $messages);
-        Request::flash();
-         if($validar->fails()){
-            return Redirect::back()->withInput(Request::all())->withErrors($validar);
-        }else {
-            $data = pacientes::findOrFail($id);
-            $data->fill($paciente)->save();
-            $historial=array(
-                'id_paciente' => $id,
-                'id_usuario' => Auth::user()->id_usuario,
-                'id_motivo' => '2',
-                'fecha' => date("Y-m-d H:i:s"),
-                'estatura' => $inputs['estatura'],
-                'peso' => $inputs['peso'],
-                );
-
-            historial_pacientes::create($historial);
-            
-        }
-        return Redirect::to('pacientes');
     }
-    
+    return Redirect::to('pacientes/show');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -207,9 +213,74 @@ class pacientesController extends Controller
         $listado = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
         str_shuffle($listado);
         for( $i=1; $i<=8; $i++) {
-        $password .= $listado[rand(0,strlen($listado))];
-        str_shuffle($listado);
+            $password .= $listado[rand(0,strlen($listado))];
+            str_shuffle($listado);
         }
         return $password;
     }
+
+    public function create_orden($id){
+        $paciente = pacientes::findOrFail($id);
+        $estudios = estudios::all();
+        $orden = new ordenes;
+        $data = [
+            'datos' => $paciente,
+            'orden' => $orden,
+            'estudios' => $estudios,
+        ];
+        return view('paciente.reg_paciente', $data);
+    }
+    public function store_orden(Request $request, $id){
+        $inputs= Request::all();
+        $orden=array(
+            'fecha_creacion' =>date("Y-m-d H:i:s"),
+            'status_orden' => 1,
+            'id_paciente' => $id,
+            'id_convenio' =>0,
+            'id_descuento' =>0
+        );
+        if (ordenes::create($orden)) {
+            $id_orden = ordenes::all()->last();
+            $id_orden  = $id_orden['id_orden'];
+            $hco = array(
+                'id_motivo' =>1,
+                'id_usuario' =>Auth::user()->id_usuario,
+                'id_orden' =>$id_orden,
+                'fecha_modificacion'=> date("Y-m-d H:i:s"));
+            if(historial_creacion_orden::create($hco)){
+                $resultados= array(
+                    'observaciones' => "",
+                    'fecha_registro' =>date("Y-m-d H:i:s"),
+                    'id_usuario' =>Auth::user()->id_usuario
+                );
+                if (resultados::create($resultados)) {
+                    $resultado = resultados::all()->last();
+                    $resultado = $resultado->id_resultado;
+                    foreach ($inputs['estudio'] as $estudio) {
+                        $est = campos_estudio::where('id_estudio',$estudio)->get();
+                        foreach ($est as $value) {
+                            $result = array('name' =>$value['name'],
+                                'valor_referencia' =>($value['valor'] .' '. $value['unidad']),
+                                'valor_registrado' =>"",
+                                'id_resultado' =>$resultado
+                            );
+                            valores_resultado::create($result);
+                        }
+                        $oe = array(
+                            'id_orden' => $id_orden,
+                            'id_estudio' => (int) $estudio,
+                            'status_estudio' => 1,
+                            'id_resultado' => $resultado
+                        );
+                        orden_estudio::create($oe);
+                    }
+                }
+
+            }
+
+        }
+        return Redirect::to('pacientes/show');
+    }
 }
+
+

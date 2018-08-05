@@ -26,6 +26,9 @@ Route::get('/logout', ['as' => 'auth/logout', 'uses' => 'Auth\LoginController@ge
 Route::group(['middleware' => 'auth'], function () {
 	
 	//Ruta de Pacientes
+	Route::get('pacientes/{id}/estudios', 'pacientesController@create_orden');
+	Route::post('pacientes/{id}/estudios', 'pacientesController@store_orden');
+	Route::put('pacientes/{id}/estudios', 'pacientesController@update_orden');
 	Route::get('pacientes/estudios', 'pacientesController@lista_estudios');
 	Route::resource('pacientes', 'pacientesController');
 

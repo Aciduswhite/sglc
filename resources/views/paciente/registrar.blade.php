@@ -208,7 +208,7 @@
 {{ Form::hidden ('_method', 'PUT') }}
 @endif
 <div class="text-right">
-   {{ link_to('pacientes', 'Cancelar', array('class' => 'btn btn-warning')) }}
+   {{ link_to('pacientes/show', 'Cancelar', array('class' => 'btn btn-warning')) }}
    {{ Form::submit('Guardar', array('class' => 'btn  btn-success')) }}
 </div>
 {{ Form::close() }}

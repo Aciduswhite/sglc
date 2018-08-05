@@ -79,9 +79,9 @@
                     </a>
                 </li>
                 <li >
-                    <a href="{{URL::to('/resultados')}}">
+                    <a href="{{URL::to('/pacientes/estudios')}}">
                         <i class="fa fa-thermometer-full"></i>
-                        <span class="title">Analisis</span>
+                        <span class="title">Lista de Estudios</span>
                     </a>
                 </li>
                 <li >
@@ -219,7 +219,6 @@
 {!! HTML::script('assets/plugins/bootstrap3-wysihtml5/js/bootstrap3-wysihtml5.all.min.js')!!}
 {!! HTML::script('assets/js/jquery.jeditable.js')!!}
 {!! HTML::script('assets/js/scripts.js') !!}
-{!! HTML::script('assets/js/main.js') !!}
 @show
 @section('moreJs')
 @show

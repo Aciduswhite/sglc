@@ -1,5 +1,8 @@
-@extends('paciente.menu')
+@extends('Layout.panel')
 @section('content')
+<header class="panel_header">
+    <h2 class="title pull-left">LISTA DE ESTUDIOS</h2>
+</header>
 @if ($datos->count())
     <table id="a8" class="table table-striped dt-responsive display">
         <thead>
