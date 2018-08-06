@@ -74,101 +74,85 @@
                 @if(Auth::user()->id_rol == 1 )
                 <li >
                     <a href="{{URL::to('/pacientes/show')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Pacientes</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/estudios')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Lista de Estudios</span>
                     </a>
                 </li>
                 <li >
+                    <a href="{{URL::to('/pacientes/pagos')}}">
+                        <span class="title">Pagos</span>
+                    </a>
+                </li>
+                <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <i class="fa fa-thermometer-full"></i>
                         <span class="title">Analisis</span>
                     </a>
                 </li>
 
                 @endif
 
-                @if(Auth::user()->id_rol == 1 )
+                @if(Auth::user()->id_rol == 2 )
                 <li >
                     <a href="{{URL::to('/admin')}}">
-                        <i class="fa fa-user-plus"></i>
                         <span class="title">Administrador</span>
                     </a>
                 </li>

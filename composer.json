@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-dompdf": "^0.8.2",
+        "dompdf/dompdf": "^0.8",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
@@ -25,7 +27,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+             "Barryvdh\\DomPDF\\": "src"
         }
     },
     "autoload-dev": {
@@ -34,9 +37,17 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.8-dev"
+        },
         "laravel": {
             "dont-discover": [
-            ]
+            ],  "providers": [
+                "Barryvdh\\DomPDF\\ServiceProvider"
+            ],
+            "aliases": {
+                "PDF": "Barryvdh\\DomPDF\\Facade"
+            }
         }
     },
     "scripts": {

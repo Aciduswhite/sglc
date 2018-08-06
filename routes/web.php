@@ -25,11 +25,18 @@ Route::get('/logout', ['as' => 'auth/logout', 'uses' => 'Auth\LoginController@ge
 
 Route::group(['middleware' => 'auth'], function () {
 	
-	//Ruta de Pacientes
+	//Controlador de Pacientes
+	//creacion de ordenes
 	Route::get('pacientes/{id}/estudios', 'pacientesController@create_orden');
 	Route::post('pacientes/{id}/estudios', 'pacientesController@store_orden');
-	Route::put('pacientes/{id}/estudios', 'pacientesController@update_orden');
+	//creacion de pagos
+	Route::get('pacientes/pagos', 'pacientesController@consultar_cobros');
+	Route::get('pacientes/pagos/{id}', 'pacientesController@generar_cobro');
+	Route::post('pacientes/pagos/{id}', 'pacientesController@store_pago');
+	//Route::get('pacientes/pagos/{$id_p}/{id_o}', 'pacientesController@consultar_cobros');
+	//lista de estudios para recepcionista
 	Route::get('pacientes/estudios', 'pacientesController@lista_estudios');
+	//manejo de pacientes
 	Route::resource('pacientes', 'pacientesController');
 
 	//Ruta de Administrador

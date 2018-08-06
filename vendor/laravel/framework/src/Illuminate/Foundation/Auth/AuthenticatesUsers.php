@@ -15,10 +15,6 @@ trait AuthenticatesUsers
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLogin()
-    {
-        return $this->showLoginForm();
-    }
     public function showLoginForm()
     {
         return view('auth.login');
@@ -143,7 +139,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'user';
+        return 'email';
     }
 
     /**
@@ -152,21 +148,13 @@ trait AuthenticatesUsers
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getLogout()
-    {
-        return $this->logout();
-    }
-    public function logout()
+    public function logout(Request $request)
     {
         $this->guard()->logout();
 
-        $request= session()->invalidate();
+        $request->session()->invalidate();
 
         return redirect('/');
-/*
-        Auth::guard($this->getGuard())->logout();
-
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');*/
     }
 
     /**
