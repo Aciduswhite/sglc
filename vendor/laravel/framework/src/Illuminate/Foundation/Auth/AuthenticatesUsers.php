@@ -19,6 +19,10 @@ trait AuthenticatesUsers
     {
         return view('auth.login');
     }
+    public function getLogin()
+    {
+        return $this->showLoginForm();
+    }
 
     /**
      * Handle a login request to the application.
