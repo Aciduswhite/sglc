@@ -29,38 +29,38 @@
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <!-- START TOPBAR -->
-    <div class='page-topbar '>
-        <div class='logo-area'>
-        </div>
-        <div class='quick-area'>
-            <div class='pull-left'>
-                <ul class="info-menu left-links list-inline list-unstyled">
-                    <li class="sidebar-toggle-wrap">
-                        <a href="#" data-toggle="sidebar" class="sidebar_toggle">
-                            <i class="fa fa-bars"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class='pull-right'>
-                <ul class="info-menu right-links list-inline list-unstyled">
-                    <li class="profile">
-                        <a href="#" data-toggle="dropdown" class="toggle">
-                         <!--Nombre De Usuario-->
-                            <span> {{Auth::user()->nombre}} <i class="fa fa-angle-down"></i></span>
-                        </a>
-                        <ul class="dropdown-menu profile animated fadeIn">
-                            <li class="last">
-                            <a href="{{URL::to('logout')}}">
-                                <i class="fa fa-lock"></i>
-                                Salir
-                            </a>
-                        </li>
-                    </ul>
+<div class='page-topbar '>
+    <div class='logo-area'>
+    </div>
+    <div class='quick-area'>
+        <div class='pull-left'>
+            <ul class="info-menu left-links list-inline list-unstyled">
+                <li class="sidebar-toggle-wrap">
+                    <a href="#" data-toggle="sidebar" class="sidebar_toggle">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </li>
             </ul>
         </div>
+        <div class='pull-right'>
+            <ul class="info-menu right-links list-inline list-unstyled">
+                <li class="profile">
+                    <a href="#" data-toggle="dropdown" class="toggle">
+                       <!--Nombre De Usuario-->
+                       <span> {{Auth::user()->nombre}} <i class="fa fa-angle-down"></i></span>
+                   </a>
+                   <ul class="dropdown-menu profile animated fadeIn">
+                    <li class="last">
+                        <a href="{{URL::to('logout')}}">
+                            <i class="fa fa-lock"></i>
+                            Salir
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
+</div>
 </div>
 <!-- END TOPBAR -->
 <!-- START CONTAINER -->
@@ -88,63 +88,13 @@
                     </a>
                 </li>
                 <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
+                    <a href="{{URL::to('/admin/usuarios')}}">
+                        <span class="title">Usuarios</span>
                     </a>
                 </li>
                 <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
-                    </a>
-                </li>
-                <li >
-                    <a href="{{URL::to('/resultados')}}">
-                        <span class="title">Analisis</span>
+                    <a href="{{URL::to('/admin/estudios')}}">
+                        <span class="title">Estudios</span>
                     </a>
                 </li>
 
@@ -152,21 +102,82 @@
 
                 @if(Auth::user()->id_rol == 2 )
                 <li >
-                    <a href="{{URL::to('/admin')}}">
-                        <span class="title">Administrador</span>
+                    <a href="{{URL::to('/pacientes/show')}}">
+                        <span class="title">Pacientes</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('/admin/usuarios')}}">
+                        <span class="title">Usuarios</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('/admin/estudios')}}">
+                        <span class="title">Estudios</span>
                     </a>
                 </li>
                 @endif
+                @if(Auth::user()->id_rol == 3 )
+                <li >
+                    <a href="{{URL::to('/pacientes/show')}}">
+                        <span class="title">Pacientes</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('/admin/estudios')}}">
+                        <span class="title">Estudios</span>
+                    </a>
+                </li>
+                @endif
+                @if(Auth::user()->id_rol == 4 )
+
+                <li >
+                    <a href="{{URL::to('/admin/estudios')}}">
+                        <span class="title">Estudios</span>
+                    </a>
+                </li>
+                @endif
+
+                @if(Auth::user()->id_rol == 5 )
+                <li >
+                    <a href="{{URL::to('/pacientes/show')}}">
+                        <span class="title">Pacientes</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('/pacientes/estudios')}}">
+                        <span class="title">Lista de Estudios</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('/pacientes/pagos')}}">
+                        <span class="title">Pagos</span>
+                    </a>
+                </li>
+                @endif
+                @if(Auth::user()->id_rol == 6 )
+                <li >
+                    <a href="{{URL::to('/admin/estudios')}}">
+                        <span class="title">Estudios</span>
+                    </a>
+                </li>
+                                <li >
+                    <a href="{{URL::to('/admin/estudios')}}">
+                        <span class="title">Estudios</span>
+                    </a>
+                </li>
+                @endif
+
             </ul>
         </div>
         <!-- MAIN MENU - END -->
         <div class="project-info text-center">
-         TEAM SILENT
-     </div>
- </div>
- <!--  SIDEBAR - END -->
- <!-- START CONTENT -->
- <section id="main-content" class=" ">
+           TEAM SILENT
+       </div>
+   </div>
+   <!--  SIDEBAR - END -->
+   <!-- START CONTENT -->
+   <section id="main-content" class=" ">
     <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             <div class="page-title">

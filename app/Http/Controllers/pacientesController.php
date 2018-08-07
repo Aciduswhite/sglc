@@ -31,7 +31,13 @@ class pacientesController extends Controller
     public function create()
     {
         $datos = new pacientes();
-        return view('paciente.registrar')->with('datos', $datos);
+        $histo = new historial_pacientes();
+        $data = [
+            'datos' => $datos,
+            'datos2' => $histo,
+
+        ];
+        return view('paciente.registrar', $data);
     }
 
 
@@ -58,12 +64,13 @@ class pacientesController extends Controller
             'app_paterno'=> 'required',
             'app_materno'=> 'required',
             'fecha_nacimiento'=> 'required',
-            'tel_celular'=> 'required',
+            'curp'=>'required|min:18|max:18'
         );
 
         $messages = array(
             'required' => 'Este campo es obligatorio',
-            'min' => 'Requiere un mínimo de 4 caracteres'
+            'min' => 'Requiere un mínimo de 18 caracteres',
+            'max' => 'La curp no puede Exeder los 18 caracteres'
         );
 
         $validar = Validator::make($inputs, $rules, $messages);
@@ -72,8 +79,7 @@ class pacientesController extends Controller
             return Redirect::back()->withInput(Request::all())->withErrors($validar);
         }else {
             pacientes::create($paciente);
-            $id = pacientes::all()->last();
-            $id= $id->id_paciente;
+            $id = pacientes::all()->last()->id_paciente;
             $historial=array(
                 'id_paciente' => $id,
                 'id_usuario' => Auth::user()->id_usuario,
@@ -125,16 +131,17 @@ class pacientesController extends Controller
             'rfc'=>$inputs['rfc'],
         );
         $rules =  array(
-            'nombre'=> 'required|min:4',
-            'app_paterno'=> 'required|min:4',
-            'app_materno'=> 'required|min:4',
+            'nombre'=> 'required',
+            'app_paterno'=> 'required',
+            'app_materno'=> 'required',
             'fecha_nacimiento'=> 'required',
-            'tel_celular'=> 'required',
+            'curp'=>'required|min:18|max:18'
         );
 
         $messages = array(
             'required' => 'Este campo es obligatorio',
-            'min' => 'Requiere un mínimo de 4 caracteres',
+            'min' => 'Requiere un mínimo de 18 caracteres',
+            'max' => 'La curp no puede Exeder los 18 caracteres'
         );
 
         $validar = Validator::make($inputs, $rules, $messages);
@@ -196,8 +203,7 @@ class pacientesController extends Controller
             'estatus_pago' =>0
         );
         if (ordenes::create($orden)) {
-            $id_orden = ordenes::all()->last();
-            $id_orden  = $id_orden['id_orden'];
+            $id_orden = ordenes::all()->last()->id_orden;
             $hco = array(
                 'id_motivo' =>1,
                 'id_usuario' =>Auth::user()->id_usuario,
@@ -210,8 +216,7 @@ class pacientesController extends Controller
                     'id_usuario' =>Auth::user()->id_usuario
                 );
                 if (resultados::create($resultados)) {
-                    $resultado = resultados::all()->last();
-                    $resultado = $resultado->id_resultado;
+                    $resultado = resultados::all()->last()->id_resultado;
                     foreach ($inputs['estudio'] as $estudio) {
                         $est = campos_estudio::where('id_estudio',$estudio)->get();
                         foreach ($est as $value) {
@@ -270,6 +275,7 @@ class pacientesController extends Controller
             'fecha_pago' => date("Y-m-d H:i:s"),
             'monto' => $inputs['monto'],
             'id_orden' => $id,
+            'file' => $id."-".date("Y-m-d H-i-s")."-".$inputs['monto'].".pdf",
         );
         if (pagos::create($pago)) {
             $orden_estudio = orden_estudio::where([
@@ -282,16 +288,45 @@ class pacientesController extends Controller
             $pago_acomulado = pagos::where('id_orden' , $id)->get();
             $total_pagado=0;
             foreach ($pago_acomulado as $pago) {
-               $total_pagado += $pago->monto;
+                $total_pagado += $pago->monto;
             }
-             $total_pagado+=$inputs['monto'] ;
+            //$total_pagado+=$inputs['monto'] ;
             if ($total_pagado>= $monto_total) {
                 $orden = ordenes::findOrFail($id);
                 $orden->estatus_pago = 1;
                 $orden->save();
             }
+            $idpago = pagos::all()->last()->id_pago;
+
+            self::pdf_pago($monto_total,$total_pagado,$idpago);
+            return Redirect::to('pacientes/showpdf/'.$idpago);
         }
+    }
+    public function pdf_pago($monto,$total_pagado, $id){
+        $restante = $monto - $total_pagado;
+        $pago = pagos::findOrFail($id);
+        $estudios = orden_estudio::where([
+            ['status_estudio','=',1],
+            ['id_orden','=',$pago->id_orden]])->get();
+
+        $data = array(
+            'monto'=> $monto, 
+            'total_pagado' => $total_pagado,
+            'adeudo' => $restante,
+            'pago' => $pago,
+            'fecha' => date("d-m-Y"),
+            'estudios' =>$estudios,
+        );
+        $pdf = PDF::loadView('pdf.pdf_pagos', $data)->save('pdf_pagos/'.$pago->file); 
+    }
+    public function showpdf($id){
+        $pago = pagos::findOrFail($id);
+
+        return view('paciente.pagos')->with('pago', $pago);
     }
 }
 
 
+/*
+        <h2 class="title pull-left">PACIENTE: {{$pago->orden->pacientes->app_paterno}} {{$pago->orden->pacientes->app_materno}} {{$pago->orden->pacientes->nombre}} <br> FOLIO DE SOLICITUD: {{$pago->orden->id_orden}}<br>FOLIO DE PAGO: {{$pago->id_pago}} </h2>
+*/

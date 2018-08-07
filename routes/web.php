@@ -16,9 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::get('/', 'Auth\LoginController@getLogin')->name('login');
+Route::get('/', 'Auth\LoginController@getLogin')->name('login');/*
 Route::get('/registrar', 'Auth\RegisterController@index');
 Route::post('/registrar', 'Auth\RegisterController@create')->name('register');
+*/
 Route::post('/login', ['as' => 'auth/login', 'uses' => 'Auth\LoginController@post_login']);
 Route::get('/logout', ['as' => 'auth/logout', 'uses' => 'Auth\LoginController@getLogout']);
 
@@ -33,18 +34,31 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('pacientes/pagos', 'pacientesController@consultar_cobros');
 	Route::get('pacientes/pagos/{id}', 'pacientesController@generar_cobro');
 	Route::post('pacientes/pagos/{id}', 'pacientesController@store_pago');
-	//Route::get('pacientes/pagos/{$id_p}/{id_o}', 'pacientesController@consultar_cobros');
 	//lista de estudios para recepcionista
 	Route::get('pacientes/estudios', 'pacientesController@lista_estudios');
+	//pdf
+	Route::get('pacientes/showpdf/{id}', 'pacientesController@showpdf');
 	//manejo de pacientes
 	Route::resource('pacientes', 'pacientesController');
 
 	//Ruta de Administrador
 	Route::get('admin','adminController@index');
+	// estudios
 	Route::get('admin/estudios','adminController@mostrar_estudios');
+	Route::get('admin/estudios/nuevo', 'adminController@create_estudio');
+	Route::post('admin/estudios/nuevo', 'adminController@nuevo_estudio');
+	Route::get('admin/estudios/nuevo/{id}', 'adminController@edit_estudio');
+	Route::put('admin/estudios/nuevo/{id}', 'adminController@update_estudio');
+	Route::put('admin/estudios/nuevo/{id}', 'adminController@update_estudio');
+	//actualizar el status del estudios
+	Route::get('admin/cambio_estudio/{id}/{valor}', 'adminController@cambio_status');
+	//usuarios
 	Route::get('admin/usuarios', 'adminController@mostrar_usuarios');
 	Route::get('admin/usuario/nuevo','adminController@create');
 	Route::post('admin/usuario/nuevo','adminController@registrar_usuario');
+	Route::get('admin/usuario/{id}/edit','adminController@editar_usuario');
+	Route::put('admin/usuario/nuevo/{id}','adminController@actualizar_usuario');
+
 	
 	//Ruta de Resultados
 	Route::get("resultados", "resultadosController@index");
@@ -55,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 
 	
-		
+
 });
 
 

@@ -1,4 +1,4 @@
-@extends('admin.menu')
+@extends('Layout.panel')
 @section('content')
 
 
@@ -25,7 +25,7 @@
                  </div>
              </div>
              <!--campo appellido paterno-->
-                <div class="form-group">
+             <div class="form-group">
                  {{ Form::label ('app_paterno', 'Apellido Paterno: *', array('class' => 'form-label')) }}
                  <div class="controls">
                      <i class=""></i>
@@ -40,7 +40,7 @@
                  </div>
              </div>
              <!--campo appellido materno-->
-                <div class="form-group">
+             <div class="form-group">
                  {{ Form::label ('app_materno', 'Apellido Materno: *', array('class' => 'form-label')) }}
                  <div class="controls">
                      <i class=""></i>
@@ -90,7 +90,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('rfc', $datos->rfc)}}
-                     {{ Form::text ('rfc', $datos->rfc, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('rfc', $datos->rfc, array('class' => 'form-control')) }}
                      @if($errors->first('rfc'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -105,7 +105,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('clave_seguro', $datos->clave_seguro)}}
-                     {{ Form::text ('clave_seguro', $datos->clave_seguro, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('clave_seguro', $datos->clave_seguro, array('class' => 'form-control', '    ' => 'required')) }}
                      @if($errors->first('clave_seguro'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -120,7 +120,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('tel_casa', $datos->tel_casa)}}
-                     {{ Form::text ('tel_casa', $datos->tel_casa, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('tel_casa', $datos->tel_casa, array('class' => 'form-control')) }}
                      @if($errors->first('tel_casa'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -135,7 +135,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('tel_celular_personal', $datos->tel_celular_personal)}}
-                     {{ Form::text ('tel_celular_personal', $datos->tel_celular_personal, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('tel_celular_personal', $datos->tel_celular_personal, array('class' => 'form-control')) }}
                      @if($errors->first('tel_celular_personal'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -150,7 +150,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('tel_celular_empresa', $datos->tel_celular_empresa)}}
-                     {{ Form::text ('tel_celular_empresa', $datos->tel_celular_empresa, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('tel_celular_empresa', $datos->tel_celular_empresa, array('class' => 'form-control')) }}
                      @if($errors->first('tel_celular_empresa'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -165,7 +165,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('tel_emergencia', $datos->tel_emergencia)}}
-                     {{ Form::text ('tel_emergencia', $datos->tel_emergencia, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('tel_emergencia', $datos->tel_emergencia, array('class' => 'form-control')) }}
                      @if($errors->first('tel_emergencia'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -255,7 +255,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('estado_civil', $datos->estado_civil)}}
-                     {{ Form::text ('estado_civil', $datos->estado_civil, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::text ('estado_civil', $datos->estado_civil, array('class' => 'form-control')) }}
                      @if($errors->first('estado_civil'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -266,67 +266,60 @@
              </div>
              <!--campo estatus usuario-->
              <div class="form-group">
-                 {{ Form::label ('estatus_user', 'Estatus Usuario: *', array('class' => 'form-label')) }}
-                 <div class="controls">
-                     <i class=""></i>
-                     {{Form::hidden('estatus_user', $datos->estatus_user)}}
-                     {{ Form::text ('estatus_user', $datos->estatus_user, array('class' => 'form-control', 'required' => 'required')) }}
-                     @if($errors->first('estatus_user'))
-                     <div class="alert alert-error alert-dismissible fade in">
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                         {{$errors->first('estatus_user')}}
-                     </div>
-                     @endif
+                <label class="form-label" for="estatus_user" > Estatus Usuario: *</label>
+                <div class="controls">
+                    <select id="estatus_user" name="estatus_user" class="form-control " required >
+                        <option @if($datos->estatus_user = 1) selected @endif  value="1">Activo</option>
+                        <option @if($datos->estatus_user < 0) selected @endif value="0">Inactivo</option>
+                    </select>
+                </div>                
+            </div>
+            <!--campo titulo-->
+            <div class="form-group">
+             {{ Form::label ('titulo', 'Titulo: *', array('class' => 'form-label')) }}
+             <div class="controls">
+                 <i class=""></i>
+                 {{Form::hidden('titulo', $datos->titulo)}}
+                 {{ Form::text ('titulo', $datos->titulo, array('class' => 'form-control')) }}
+                 @if($errors->first('titulo'))
+                 <div class="alert alert-error alert-dismissible fade in">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                     {{$errors->first('titulo')}}
                  </div>
+                 @endif
              </div>
-             <!--campo titulo-->
-             <div class="form-group">
-                 {{ Form::label ('titulo', 'Titulo: *', array('class' => 'form-label')) }}
-                 <div class="controls">
-                     <i class=""></i>
-                     {{Form::hidden('titulo', $datos->titulo)}}
-                     {{ Form::text ('titulo', $datos->titulo, array('class' => 'form-control', 'required' => 'required')) }}
-                     @if($errors->first('titulo'))
-                     <div class="alert alert-error alert-dismissible fade in">
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                         {{$errors->first('titulo')}}
-                     </div>
-                     @endif
-                 </div>
-             </div>
-             <!--campo rol-->
-             <div class="form-group">
-                 {{ Form::label ('id_rol', 'Rol: *', array('class' => 'form-label')) }}
-                 <div class="controls">
-                     <i class=""></i>
-                     {{Form::hidden('id_rol', $datos->id_rol)}}
-                     {{ Form::select('id_rol', ['Selecciona el Rol', '' => $rol ], $datos->id_rol, array('class' => 'form-control' , 'required' => 'required', 'id_rol' => 'selectid')) }}
-                     @if($errors->first('id_rol'))
-                     <div class="alert alert-error alert-dismissible fade in">
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                         {{$errors->first('id_rol')}}
-                     </div>
-                     @endif
-                 </div>
-             </div>
-             <!--campo password-->
-             <div class="form-group">
-                 {{ Form::label ('password', 'Password: *', array('class' => 'form-label')) }}
-                 <div class="controls">
-                     <i class=""></i>
-                     {{Form::hidden('password', $datos->password)}}
-                     {{ Form::text ('password', $datos->password, array('class' => 'form-control', 'required' => 'required')) }}
-                     @if($errors->first('password'))
-                     <div class="alert alert-error alert-dismissible fade in">
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                         {{$errors->first('password')}}
-                     </div>
-                     @endif
-                 </div>
-             </div>
-
+         </div>
+         <!--campo rol-->
+         <div class="form-group">
+            <label class="form-label" for="id_rol" > Rol: *</label>
+            <div class="controls">
+                <select id="id_rol" name="id_rol" class="form-control " required >
+                    @foreach($rol as $roles)
+                    @if($roles->id_rol <> 8)
+                    <option @if($datos->id_rol == $roles->id_rol ) selected @endif value={{$roles->id_rol}} >{{$roles->name}}</option>
+                    @endif
+                    @endforeach
+                </select>
+            </div>                
         </div>
-    </div>
+
+     <!--campo password-->
+     <div class="form-group">
+         {{ Form::label ('password', 'Password: *', array('class' => 'form-label')) }}
+         <div class="controls">
+             <i class=""></i>
+             {{ Form::text ('password', "", array('class' => 'form-control', 'required' => 'required')) }}
+             @if($errors->first('password'))
+             <div class="alert alert-error alert-dismissible fade in">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                 {{$errors->first('password')}}
+             </div>
+             @endif
+         </div>
+     </div>
+
+ </div>
+</div>
 </section>
 </div>
 @if($datos->id_usuario)
@@ -337,4 +330,8 @@
    {{ Form::submit('Guardar', array('class' => 'btn  btn-success')) }}
 </div>
 {{ Form::close() }}
+<script type="text/javascript">
+  $("#fecha_nacimiento" ).datepicker( "option", "dateFormat", "dd-mm-yy" ); 
+  $("#fecha_ingreso").datepicker( "option", "dateFormat", "dd-mm-yy" ); 
+</script>
 @stop

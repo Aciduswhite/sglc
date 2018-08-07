@@ -147,7 +147,7 @@
                  <div class="controls">
                      <i class=""></i>
                      {{Form::hidden('fecha_nacimiento', $datos->fecha_nacimiento)}}
-                     {{ Form::text ('fecha_nacimiento', $datos->fecha_nacimiento, array('class' => 'form-control', 'required' => 'required')) }}
+                     {{ Form::date ('fecha_nacimiento', $datos->fecha_nacimiento, array('class' => 'form-control', 'required' => 'required')) }}
                      @if($errors->first('fecha_nacimiento'))
                      <div class="alert alert-error alert-dismissible fade in">
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -213,3 +213,6 @@
 </div>
 {{ Form::close() }}
 @stop
+<script type="text/javascript">
+      $("#fecha_nacimiento" ).datepicker( "option", "dateFormat", "dd-mm-yy" ); 
+</script>

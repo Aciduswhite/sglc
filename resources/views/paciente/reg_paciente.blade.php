@@ -3,19 +3,25 @@
 <div class="col-md-12">
     <section class="box ">
         <header class="panel_header">
-    <h2 class="title pull-left">SOLICITUD DE ESTUDIOS PARA - {{$datos->nombre}}</h2>
-</header>
+            <h2 class="title pull-left">SOLICITUD DE ESTUDIOS PARA - {{$datos->nombre}}</h2>
+        </header>
         <div class="content-body">
             <div class="form-group">
                 <label class="form-label" > Estudio</label>
                 <div class="controls">
-                    <select id="Estudio"  name ="asd" class="form-control" >
+                    <select id="Estudio" class="form-control " >
                         @foreach($estudios as $estudio)
                         <option id="{{$estudio->costo_estudio}}" value="{{$estudio->id_estudio}}">{{$estudio->nombre_estudio}}</option>
                         @endforeach
                     </select>
                 </div>
-                <input type="button" onclick="llenar()" value="Agregar Estudio" class="btn btn-success ">
+                <div>
+                    <label id="cest"></label>
+                </div>
+                <div class="text-right">
+                    <input type="button" onclick="llenar()" value="Agregar Estudio" class="btn btn-success ">
+                </div>
+                
             </div>
         </div>
     </section>
@@ -27,9 +33,9 @@
 <div class="col-md-12">
 
     <section class="box ">
-            <header class="panel_header">
-                <h2 class="title pull-left">LISTA DE ESTUDIOS PARA - {{$datos->nombre}}</h2>
-            </header>
+        <header class="panel_header">
+            <h2 class="title pull-left">LISTA DE ESTUDIOS PARA - {{$datos->nombre}}</h2>
+        </header>
         <div class="content-body">
 
             <div class="row">

@@ -23,6 +23,7 @@
              @endif
          </div>
      </div>
+     <br>
      @if($datos->id_pago)
      {{ Form::hidden ('_method', 'PUT') }}
      @endif

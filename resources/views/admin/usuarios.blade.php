@@ -1,6 +1,7 @@
-@extends('admin.menu')
+@extends('Layout.panel')
 @section('content')
 @if ($datos->count())
+<div class="content-body">
 <header class="panel_header">
     <h2 class="title pull-left">LISTA DE USUARIOS</h2>
     <div class="actions panel_actions pull-right">
@@ -30,9 +31,10 @@
                 <a href="/admin/usuario/{{$user->id_usuario}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
                     <i class="fa fa-pencil" ></i>
                 </a>
+                <!--
                 <a href="/admin/usuario/{{$user->id_usuario}}/show" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Mas Datos" data-placement="top">
                     <i class="fa fa-address-card" ></i>
-                </a>
+                </a>-->
             </th>
 @endforeach
 		</tbody>
@@ -40,4 +42,5 @@
 @else
 	<p>No hay registros disponibles</p>
 @endif
+</div>
 @stop

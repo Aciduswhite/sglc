@@ -106,7 +106,7 @@ trait AuthenticatesUsers
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+        ?: redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -152,14 +152,25 @@ trait AuthenticatesUsers
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
+    public function getLogout()
     {
+        return $this->logout();
+    }
+
+    public function logout()
+    {
+        /*
         $this->guard()->logout();
 
         $request->session()->invalidate();
 
-        return redirect('/');
+        return redirect('/');*/
+
+        Auth::guard($this->getGuard())->logout();
+
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
+
 
     /**
      * Get the guard to be used during authentication.
@@ -169,5 +180,9 @@ trait AuthenticatesUsers
     protected function guard()
     {
         return Auth::guard();
+    }
+        protected function getGuard()
+    {
+        return property_exists($this, 'guard') ? $this->guard : null;
     }
 }
