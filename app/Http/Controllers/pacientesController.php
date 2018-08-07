@@ -198,8 +198,8 @@ class pacientesController extends Controller
             'fecha_creacion' =>date("Y-m-d H:i:s"),
             'status_orden' => 1,
             'id_paciente' => $id,
-            'id_convenio' =>0,
-            'id_descuento' =>0,
+            'id_convenio' =>1,
+            'id_descuento' =>1,
             'estatus_pago' =>0
         );
         if (ordenes::create($orden)) {

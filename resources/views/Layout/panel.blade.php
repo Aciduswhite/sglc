@@ -97,6 +97,18 @@
                         <span class="title">Estudios</span>
                     </a>
                 </li>
+                <li >
+                    <a href="{{URL::to('resultados/pacientes')}}">
+                        <span class="title">Resultados</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('resultados/resultados')}}">
+                        <span class="title">Imprimir Resultados</span>
+                    </a>
+                </li>
+
+
 
                 @endif
 
@@ -161,7 +173,7 @@
                         <span class="title">Estudios</span>
                     </a>
                 </li>
-                                <li >
+                <li >
                     <a href="{{URL::to('/admin/estudios')}}">
                         <span class="title">Estudios</span>
                     </a>

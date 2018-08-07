@@ -1,4 +1,4 @@
-@extends('resultados.menu')
+@extends('Layout.panel')
 @section('content')
 @if ($datos->count())
 <header class="panel_header">

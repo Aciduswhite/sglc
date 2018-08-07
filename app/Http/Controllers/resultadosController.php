@@ -10,10 +10,6 @@ use Illuminate\Http\Request;
 
 class resultadosController extends Controller
 {
-    public function index()
-    {
-        return view('Layout.welcome');
-    }
     public function c_pacientes(){
     	$datos = pacientes::all(); 
     	return view('resultados.c_pacientes')->with('datos', $datos); 
@@ -23,7 +19,7 @@ class resultadosController extends Controller
     	return view('resultados.estudios_p')->with('datos', $datos); 
     }
     public function registra_estudio($id_paciente,$id_estudio){
-
+        $paciente = pacientes::findorfail($id_paciente);
         $resultado = new resultados();
         $estudio;
         $campos;
@@ -35,7 +31,7 @@ class resultadosController extends Controller
 
         $data = [
         'resultado' => $resultado,
-        'paciente' => $id_paciente,
+        'paciente' => $paciente,
         'id_resultado' => $id_estudio,
         'estudio' => $estudio,
         'campos' => $campos  

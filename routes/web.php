@@ -61,7 +61,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 	//Ruta de Resultados
-	Route::get("resultados", "resultadosController@index");
 	Route::get("resultados/pacientes", "resultadosController@c_pacientes");
 	Route::get("resultados/{id}/estudios","resultadosController@estudios_paciente");
 	Route::get("resultados/{id_paciente}/estudios/{id_estudio}","resultadosController@registra_estudio");
