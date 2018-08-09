@@ -183,7 +183,7 @@ class pacientesController extends Controller
 
     public function create_orden($id){
         $paciente = pacientes::findOrFail($id);
-        $estudios = estudios::all();
+        $estudios = estudios::where('status_estudio',1)->get();
         $orden = new ordenes;
         $data = [
             'datos' => $paciente,
@@ -213,17 +213,18 @@ class pacientesController extends Controller
                 $resultados= array(
                     'observaciones' => "",
                     'fecha_registro' =>date("Y-m-d H:i:s"),
-                    'id_usuario' =>Auth::user()->id_usuario
+                    'id_usuario' =>Auth::user()->id_usuario,
                 );
-                if (resultados::create($resultados)) {
-                    $resultado = resultados::all()->last()->id_resultado;
-                    foreach ($inputs['estudio'] as $estudio) {
+                foreach ($inputs['estudio'] as $estudio) {
+                    if (resultados::create($resultados)) {
+                        $resultado = resultados::all()->last()->id_resultado;
                         $est = campos_estudio::where('id_estudio',$estudio)->get();
                         foreach ($est as $value) {
                             $result = array('name' =>$value['name'],
-                                'valor_referencia' =>($value['valor'] .' '. $value['unidad']),
+                                'valor_referencia' =>$value['valor'],
                                 'valor_registrado' =>"",
-                                'id_resultado' =>$resultado
+                                'id_resultado' =>$resultado,
+                                'unidad_referencia' =>$value['unidad'],
                             );
                             valores_resultado::create($result);
                         }
@@ -236,8 +237,8 @@ class pacientesController extends Controller
                         orden_estudio::create($oe);
                     }
                 }
-
             }
+            
 
         }
         return Redirect::to('pacientes/pagos');

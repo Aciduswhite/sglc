@@ -1,6 +1,7 @@
 @extends('Layout.panel')
 @section('content')
 @if ($datos->count())
+<div class="content-body">
 <header class="panel_header">
     <h2 class="title pull-left">LISTA DE PACIENTES</h2>
     <div class="actions panel_actions pull-right">
@@ -26,14 +27,15 @@
 			<th>{{$paciente->tel_casa}} / {{$paciente->tel_celular}} </th>
             <th>
                 <a href="/pacientes/{{$paciente->id_paciente}}/edit" 
-                    class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
+                    class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated pulse" data-toggle="tooltip" data-original-title="Editar registro" data-placement="left">
                     <i class="fa fa-pencil" ></i>
                 </a>
                 <a href="/pacientes/{{$paciente->id_paciente}}/estudios" 
-                    class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Solicitar Estudios" data-placement="top">
+                    class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated pulse" data-toggle="tooltip" data-original-title="Solicitar Estudios" data-placement="left">
                     <i class="fa fa-heartbeat" ></i>
                 </a>
             </th>
+        </tr>
 
 @endforeach
 		</tbody>
@@ -41,4 +43,5 @@
 @else
 	<p>No hay registros disponibles</p>
 @endif
+</div>
 @stop

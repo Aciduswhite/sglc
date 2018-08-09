@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('admin/estudios/nuevo', 'adminController@nuevo_estudio');
 	Route::get('admin/estudios/nuevo/{id}', 'adminController@edit_estudio');
 	Route::put('admin/estudios/nuevo/{id}', 'adminController@update_estudio');
-	Route::put('admin/estudios/nuevo/{id}', 'adminController@update_estudio');
+	//Route::put('admin/estudios/nuevo/{id}', 'adminController@update_estudio');
 	//actualizar el status del estudios
 	Route::get('admin/cambio_estudio/{id}/{valor}', 'adminController@cambio_status');
 	//usuarios
@@ -63,8 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
 	//Ruta de Resultados
 	Route::get("resultados/pacientes", "resultadosController@c_pacientes");
 	Route::get("resultados/{id}/estudios","resultadosController@estudios_paciente");
-	Route::get("resultados/{id_paciente}/estudios/{id_estudio}","resultadosController@registra_estudio");
-	Route::post("resultados/{id_paciente}/estudios/{id_estudio}","resultadosController@store_registra_estudio");
+	Route::get("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@registra_estudio");
+	Route::post("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@store_registra_estudio");
 	
 
 	

@@ -37,6 +37,7 @@
                     </div>
                     <input type="hidden" value="{{$id_campo = 1}}">
                     <div id="campos">
+                        @if($campos->count())
                         @foreach($campos as $campo)
                         <div id="{{$id_campo}}">
                             <br><p class="text-center">Campo Numero :{{$id_campo}} </p>
@@ -61,6 +62,7 @@
                         </div> 
                         <input type="hidden" value="{{$id_campo = $id_campo + 1}}">
                         @endforeach
+                        @endif
                         <input type="hidden" id="id_campo"  value="{{$id_campo}}">
                     </div>
                     <div class="text-right">

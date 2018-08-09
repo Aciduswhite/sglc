@@ -1,5 +1,6 @@
 @extends('Layout.panel')
 @section('content')
+<div class="content-body">
 <header class="panel_header">
     <h2 class="title pull-left">LISTA DE ESTUDIOS</h2>
 </header>
@@ -20,10 +21,12 @@
 			<th>{{$estudio->indicaciones}}</th>
 			<th>{{$estudio->costo_estudio}}</th>
 			<th>{{$estudio->duracion_estudio}}</th>
+        </tr>
 @endforeach
 		</tbody>
     </table>
 @else
 	<p>No hay registros disponibles</p>
 @endif
+</div>
 @stop

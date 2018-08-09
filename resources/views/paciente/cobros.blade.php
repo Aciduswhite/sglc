@@ -1,6 +1,8 @@
 @extends('Layout.panel')
 @section('content')
+<div class="content-body">
 @if ($datos->count())
+
 <header class="panel_header">
     <h2 class="title pull-left">LISTA DE PACIENTES POR COBRAR</h2>
 </header>
@@ -28,14 +30,18 @@
             <th>{{$total}}</th>
             <th>
                 <a href="/pacientes/pagos/{{$orden->id_orden}}" 
-                    class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Generar Pago" data-placement="top">
-                    <i class="fa fa-usd" >PAGAR</i>
+                    class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated pulse" data-toggle="tooltip" data-original-title="Generar Pago" data-placement="left">
+                    <i class="fa fa-usd" ></i>
                 </a>
             </th>
+        </tr>
             @endforeach
         </tbody>
     </table>
     @else
-    <p>No hay registros disponibles</p>
+    <header class="panel_header">
+    <h2 class="title pull-left">No hay registros disponibles</h2>
+</header>
     @endif
+</div>
     @stop

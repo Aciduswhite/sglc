@@ -152,10 +152,10 @@ class adminController extends Controller
     }
     public function create_estudio(){
         $estudios = new estudios();
-        $campos = new campos_estudio();
+
         $data = [
             'estudio' => $estudios,
-            'campos' => $campos,
+            'campos' => collect($value = null),
         ];
         return view('admin.estudios_save', $data);
     }

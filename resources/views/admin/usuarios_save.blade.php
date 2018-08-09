@@ -6,6 +6,9 @@
 {{ Form::open(array('url' => 'admin/usuario/nuevo/' . $datos->id_usuario, 'id_usuario' => 'icon_validate', 'files' => true)) }}
 <div class="col-md-12">
     <section class="box ">
+         <header class="panel_header">
+            <h2 class="title pull-left">Usuario  - {{$datos->app_paterno}} {{$datos->app_materno}} {{$datos->nombre}}</h2>
+        </header>
         <div class="content-body">
             <div class="row">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

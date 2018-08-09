@@ -28,11 +28,11 @@
             <th>{{$user->roles->name}}</th>
             <th>@if($user->status_user==1) Activo @else Inactivo @endif</th>
             <th>
-                <a href="/admin/usuario/{{$user->id_usuario}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
+                <a href="/admin/usuario/{{$user->id_usuario}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated pulse" data-toggle="tooltip" data-original-title="Editar registro" data-placement="left">
                     <i class="fa fa-pencil" ></i>
                 </a>
                 <!--
-                <a href="/admin/usuario/{{$user->id_usuario}}/show" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Mas Datos" data-placement="top">
+                <a href="/admin/usuario/{{$user->id_usuario}}/show" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated pulse" data-toggle="tooltip" data-original-title="Mas Datos" data-placement="left">
                     <i class="fa fa-address-card" ></i>
                 </a>-->
             </th>
