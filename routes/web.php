@@ -16,15 +16,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::get('/', 'Auth\LoginController@getLogin')->name('login');/*
-Route::get('/registrar', 'Auth\RegisterController@index');
-Route::post('/registrar', 'Auth\RegisterController@create')->name('register');
-*/
+Route::get('/', 'Auth\LoginController@getLogin')->name('login');
 Route::post('/login', ['as' => 'auth/login', 'uses' => 'Auth\LoginController@post_login']);
 Route::get('/logout', ['as' => 'auth/logout', 'uses' => 'Auth\LoginController@getLogout']);
 
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('welcome', 'pacientesController@index');
 	
 	//Controlador de Pacientes
 	//creacion de ordenes
@@ -66,6 +64,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@registra_estudio");
 	Route::post("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@store_registra_estudio");
 	
+	Route::get('cortes', 'corteController@index');
+	Route::get('cortes/{id}', 'corteController@show');
+	Route::post('cortes/registrar', 'corteController@store_corte');
 
 	
 

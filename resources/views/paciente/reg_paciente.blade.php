@@ -15,9 +15,6 @@
                         @endforeach
                     </select>
                 </div>
-                <div>
-                    <label id="cest"></label>
-                </div>
                 <div class="text-right">
                     <input type="button" onclick="llenar()" value="Agregar Estudio" class="btn btn-success ">
                 </div>

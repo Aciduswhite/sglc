@@ -46,10 +46,10 @@
             <ul class="info-menu right-links list-inline list-unstyled">
                 <li class="profile">
                     <a href="#" data-toggle="dropdown" class="toggle">
-                       <!--Nombre De Usuario-->
-                       <span> {{Auth::user()->nombre}} <i class="fa fa-angle-down"></i></span>
-                   </a>
-                   <ul class="dropdown-menu profile animated fadeIn">
+                     <!--Nombre De Usuario-->
+                     <span> {{Auth::user()->nombre}} <i class="fa fa-angle-down"></i></span>
+                 </a>
+                 <ul class="dropdown-menu profile animated fadeIn">
                     <li class="last">
                         <a href="{{URL::to('logout')}}">
                             <i class="fa fa-lock"></i>
@@ -84,7 +84,12 @@
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/pagos')}}">
-                        <span class="title">Pagos</span>
+                        <span class="title">Pagar</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="{{URL::to('/cortes')}}">
+                        <span class="title">Corte de Caja</span>
                     </a>
                 </li>
                 <li >
@@ -163,7 +168,7 @@
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/pagos')}}">
-                        <span class="title">Pagos</span>
+                        <span class="title">Pagar</span>
                     </a>
                 </li>
                 @endif
@@ -184,12 +189,12 @@
         </div>
         <!-- MAIN MENU - END -->
         <div class="project-info text-center">
-           TEAM SILENT
-       </div>
-   </div>
-   <!--  SIDEBAR - END -->
-   <!-- START CONTENT -->
-   <section id="main-content" class=" ">
+         TEAM SILENT
+     </div>
+ </div>
+ <!--  SIDEBAR - END -->
+ <!-- START CONTENT -->
+ <section id="main-content" class=" ">
     <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             <div class="page-title">
@@ -200,7 +205,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="col-lg-12">
-            
+
             @yield('content')
         </div>
     </section>
