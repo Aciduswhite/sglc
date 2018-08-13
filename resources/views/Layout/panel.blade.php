@@ -46,10 +46,10 @@
             <ul class="info-menu right-links list-inline list-unstyled">
                 <li class="profile">
                     <a href="#" data-toggle="dropdown" class="toggle">
-                     <!--Nombre De Usuario-->
-                     <span> {{Auth::user()->nombre}} <i class="fa fa-angle-down"></i></span>
-                 </a>
-                 <ul class="dropdown-menu profile animated fadeIn">
+                       <!--Nombre De Usuario-->
+                       <span> {{Auth::user()->nombre}} <i class="fa fa-angle-down"></i></span>
+                   </a>
+                   <ul class="dropdown-menu profile animated fadeIn">
                     <li class="last">
                         <a href="{{URL::to('logout')}}">
                             <i class="fa fa-lock"></i>
@@ -71,6 +71,7 @@
         <div class="page-sidebar-wrapper" id="main-menu-wrapper">
             <ul class='wraplist'>
                 <!-- Definicion de Usuarios-->
+                <!-- Super Administrador -->
                 @if(Auth::user()->id_rol == 1 )
                 <li >
                     <a href="{{URL::to('/pacientes/show')}}">
@@ -106,17 +107,14 @@
                     <a href="{{URL::to('resultados/pacientes')}}">
                         <span class="title">Resultados</span>
                     </a>
-                </li>
+                </li><!--
                 <li >
                     <a href="{{URL::to('resultados/resultados')}}">
                         <span class="title">Imprimir Resultados</span>
                     </a>
-                </li>
-
-
-
+                </li>-->
                 @endif
-
+                <!-- Administrador -->
                 @if(Auth::user()->id_rol == 2 )
                 <li >
                     <a href="{{URL::to('/pacientes/show')}}">
@@ -134,6 +132,7 @@
                     </a>
                 </li>
                 @endif
+                <!-- Director General -->
                 @if(Auth::user()->id_rol == 3 )
                 <li >
                     <a href="{{URL::to('/pacientes/show')}}">
@@ -146,15 +145,15 @@
                     </a>
                 </li>
                 @endif
+                <!-- Contador -->
                 @if(Auth::user()->id_rol == 4 )
-
                 <li >
                     <a href="{{URL::to('/admin/estudios')}}">
                         <span class="title">Estudios</span>
                     </a>
                 </li>
                 @endif
-
+                <!-- Recepcionista  -->
                 @if(Auth::user()->id_rol == 5 )
                 <li >
                     <a href="{{URL::to('/pacientes/show')}}">
@@ -171,7 +170,14 @@
                         <span class="title">Pagar</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{URL::to('/cortes')}}">
+                        <span class="title">Corte de Caja</span>
+                    </a>
+                </li>
+
                 @endif
+                <!-- Quimico Analista  -->
                 @if(Auth::user()->id_rol == 6 )
                 <li >
                     <a href="{{URL::to('/admin/estudios')}}">
@@ -179,22 +185,21 @@
                     </a>
                 </li>
                 <li >
-                    <a href="{{URL::to('/admin/estudios')}}">
-                        <span class="title">Estudios</span>
+                    <a href="{{URL::to('resultados/pacientes')}}">
+                        <span class="title">Resultados</span>
                     </a>
                 </li>
                 @endif
-
             </ul>
         </div>
         <!-- MAIN MENU - END -->
         <div class="project-info text-center">
-         TEAM SILENT
-     </div>
- </div>
- <!--  SIDEBAR - END -->
- <!-- START CONTENT -->
- <section id="main-content" class=" ">
+           TEAM SILENT
+       </div>
+   </div>
+   <!--  SIDEBAR - END -->
+   <!-- START CONTENT -->
+   <section id="main-content" class=" ">
     <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             <div class="page-title">

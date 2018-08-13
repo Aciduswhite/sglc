@@ -18,7 +18,7 @@
 
 
 
-   <div class="login-wrapper">
+ <div class="login-wrapper">
     <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
 
         <div class="text-center">
@@ -29,13 +29,13 @@
 
         <form id="Formvalidate" class="" action="login" role="form" method="post">
 
-           {!! csrf_field() !!}
+         {!! csrf_field() !!}
 
-           <div class="form-group">
+         <div class="form-group">
             <div class="input-group">
                 <!--<label class="sr-only" for="exampleInputEmail2">Usuario</label>-->
                 <div class="input-group-addon">Usuario</div>
-                <input type="text" name="user" class="form-control" required="required" id="user" placeholder="Ingrese su Usuario">
+                <input type="" name="user" class="form-control" required="required" id="user" placeholder="Ingrese su Usuario">
             </div>
         </div>
 

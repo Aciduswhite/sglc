@@ -5,7 +5,9 @@
 </header>
 <div class="content-body">
 	
-	@if($mensaje)
+	@if(empty($mensaje))
+	
+	@else
 	{{$mensaje}}
 	@endif
 </div>
