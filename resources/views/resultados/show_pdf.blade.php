@@ -8,6 +8,6 @@
 		</h2>
 	</header>
 	<div></div>
-	<embed src="../../pdf_pagos/{{$datos->file}}" type="application/pdf" width="100%" height="350" />
+	<embed src="../../pdf_resultados/{{$datos->file}}" type="application/pdf" width="100%" height="350" />
 	</section>
-	@stop
+	@stop	

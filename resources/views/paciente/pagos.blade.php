@@ -9,6 +9,6 @@
     		<iframe src="https://docs.google.com/viewer?url=http://www.adizesca.com/site/assets/g-la_ley_de_murphy.pdf&embedded=true" width="900" height="300" style="border: none;"></iframe>
     </div>-->
     <div></div>
-    <embed src="../../pdf_resultados/{{$pago->file}}" type="application/pdf" width="100%" height="350" />
+    <embed src="../../pdf_pagos/{{$pago->file}}" type="application/pdf" width="100%" height="350" />
 </section>
 @stop

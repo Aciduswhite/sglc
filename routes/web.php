@@ -23,7 +23,6 @@ Route::get('/logout', ['as' => 'auth/logout', 'uses' => 'Auth\LoginController@ge
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('welcome', 'pacientesController@index');
-	
 	//Controlador de Pacientes
 	//creacion de ordenes
 	Route::get('pacientes/{id}/estudios', 'pacientesController@create_orden');
@@ -38,7 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('pacientes/showpdf/{id}', 'pacientesController@showpdf');
 	//manejo de pacientes
 	Route::resource('pacientes', 'pacientesController');
-
 	//Ruta de Administrador
 	Route::get('admin','adminController@index');
 	// estudios
@@ -55,9 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('admin/usuario/nuevo','adminController@create');
 	Route::post('admin/usuario/nuevo','adminController@registrar_usuario');
 	Route::get('admin/usuario/{id}/edit','adminController@editar_usuario');
-	Route::put('admin/usuario/nuevo/{id}','adminController@actualizar_usuario');
-
-	
+	Route::put('admin/usuario/nuevo/{id}','adminController@actualizar_usuario');	
 	//Ruta de Resultados
 	Route::get("resultados/pacientes", "resultadosController@c_pacientes");
 	Route::post("resultados/pacientes/{id}", "resultadosController@liberar_orden");
@@ -66,12 +62,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@store_registra_estudio");
 	Route::get("resultados/resultados", "resultadosController@showresultados");
 	Route::get("resultados/resultadopdf/{id}","resultadosController@showpdfres");
-	
+	//Rutas de corte de caja
 	Route::get('cortes', 'corteController@index');
 	Route::get('cortes/{id}', 'corteController@show');
 	Route::post('cortes/registrar', 'corteController@store_corte');
-
-	
+	//Rutas de Cotizaciones
+	Route::get("cotizador","cotizacionesController@create");
+	Route::post("cotizador","cotizacionesController@generar_cotizacion");
+	Route::put("cotizador","cotizacionesController@envio");
+	//Rutas de Reportes
+	Route::get("reportes","reportesController@show");
+	Route::post("reportes/ventas","reportesController@ventas");
+	Route::post("reportes/estudio","reportesController@estudios");
 
 });
 
