@@ -1,6 +1,6 @@
 var campo_id = document.getElementById("id_campo").value;
 function nuevo_campo(){
-	var campo =	"<div id='"+campo_id+"'><br><p class='text-center'>Campo Numero : "+campo_id+"</p>"+
+	var campo =	"<div id='"+campo_id+"'><br><p class='text-center'>Valor Numero : "+campo_id+"</p>"+
 	"<div class='form-group col-md-4'>"+
 	"<label for='"+campo_id+"[]' class=''>Nombre:*</label>"+
 	"<div class='controls'>"+

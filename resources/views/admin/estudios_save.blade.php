@@ -40,7 +40,7 @@
                         @if($campos->count())
                         @foreach($campos as $campo)
                         <div id="{{$id_campo}}">
-                            <br><p class="text-center">Campo Numero :{{$id_campo}} </p>
+                            <br><p class="text-center">Valor Numero :{{$id_campo}} </p>
                             <div class='form-group col-md-4'>
                                 <label for='{{$id_campo}}[]' class=''>Nombre:*</label>
                                 <div class='controls'>
@@ -66,8 +66,8 @@
                         <input type="hidden" id="id_campo"  value="{{$id_campo}}">
                     </div>
                     <div class="text-right">
-                        <input type="button" value="Quitar Campo" class="btn btn-warning borrar">
-                        <input type="button" onclick="nuevo_campo()" value="Agregar Nuevo Campo" class="btn  btn-success">
+                        <input type="button" value="Quitar Valor" class="btn btn-warning borrar">
+                        <input type="button" onclick="nuevo_campo()" value="Agregar Nuevo Valor" class="btn  btn-success">
                     </div>
 
                     <br>

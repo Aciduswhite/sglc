@@ -60,9 +60,12 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	//Ruta de Resultados
 	Route::get("resultados/pacientes", "resultadosController@c_pacientes");
+	Route::post("resultados/pacientes/{id}", "resultadosController@liberar_orden");
 	Route::get("resultados/{id}/estudios","resultadosController@estudios_paciente");
 	Route::get("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@registra_estudio");
 	Route::post("resultados/{id_paciente}/estudios/{id_resultado}","resultadosController@store_registra_estudio");
+	Route::get("resultados/resultados", "resultadosController@showresultados");
+	Route::get("resultados/resultadopdf/{id}","resultadosController@showpdfres");
 	
 	Route::get('cortes', 'corteController@index');
 	Route::get('cortes/{id}', 'corteController@show');

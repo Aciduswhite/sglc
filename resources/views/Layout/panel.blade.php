@@ -80,12 +80,12 @@
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/estudios')}}">
-                        <span class="title">Lista de Estudios</span>
+                        <span class="title">Catalogo de Estudios</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/pagos')}}">
-                        <span class="title">Pagar</span>
+                        <span class="title">Pagos</span>
                     </a>
                 </li>
                 <li >
@@ -105,14 +105,14 @@
                 </li>
                 <li >
                     <a href="{{URL::to('resultados/pacientes')}}">
-                        <span class="title">Resultados</span>
+                        <span class="title">Capturar Resultados</span>
                     </a>
-                </li><!--
-                <li >
+                </li>
+                <li>
                     <a href="{{URL::to('resultados/resultados')}}">
                         <span class="title">Imprimir Resultados</span>
                     </a>
-                </li>-->
+                </li>
                 @endif
                 <!-- Administrador -->
                 @if(Auth::user()->id_rol == 2 )
@@ -162,12 +162,12 @@
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/estudios')}}">
-                        <span class="title">Lista de Estudios</span>
+                        <span class="title">Catalogo de Estudios</span>
                     </a>
                 </li>
                 <li >
                     <a href="{{URL::to('/pacientes/pagos')}}">
-                        <span class="title">Pagar</span>
+                        <span class="title">Pagos</span>
                     </a>
                 </li>
                 <li>
@@ -186,7 +186,7 @@
                 </li>
                 <li >
                     <a href="{{URL::to('resultados/pacientes')}}">
-                        <span class="title">Resultados</span>
+                        <span class="title">Capturar Resultados</span>
                     </a>
                 </li>
                 @endif

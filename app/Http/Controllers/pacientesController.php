@@ -91,7 +91,7 @@ class pacientesController extends Controller
             historial_pacientes::create($historial);
 
         }
-        return Redirect::to('pacientes');
+        return Redirect::to('pacientes/show');
     }
     public function show()
     {   
@@ -200,7 +200,9 @@ class pacientesController extends Controller
             'id_paciente' => $id,
             'id_convenio' =>1,
             'id_descuento' =>1,
-            'estatus_pago' =>0
+            'estatus_pago' =>0,
+            'status_resultado' => 0,
+            'file' =>"",
         );
         if (ordenes::create($orden)) {
             $id_orden = ordenes::all()->last()->id_orden;
@@ -214,6 +216,7 @@ class pacientesController extends Controller
                     'observaciones' => "",
                     'fecha_registro' =>date("Y-m-d H:i:s"),
                     'id_usuario' =>Auth::user()->id_usuario,
+                    
                 );
                 foreach ($inputs['estudio'] as $estudio) {
                     if (resultados::create($resultados)) {

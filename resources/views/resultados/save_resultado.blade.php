@@ -2,7 +2,7 @@
 @section('content')
 
 
-{{ Form::open(array('url' => 'resultados/' . $paciente->id_paciente .'/estudios/'.$resultado[0]->id_resultado, 'id_paciente' => 'icon_validate', 'files' => true)) }}
+{{ Form::open(array('url' => 'resultados/' . $orden .'/estudios/'.$resultado[0]->id_resultado, 'id_paciente' => 'icon_validate', 'files' => true)) }}
 
 <div class="col-md-12">
 

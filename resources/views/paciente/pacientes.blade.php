@@ -8,7 +8,7 @@
         {{ HTML::link('pacientes/create/', 'Crear Nuevo', array('class' => 'btn btn-info')) }}
     </div>
 </header>
-    <table id="a8" class="table table-striped dt-responsive display">
+    <table  id="tab" class="table table-striped dt-responsive display">
         <thead>
             <tr>
                 <th>Folio</th>
@@ -44,4 +44,11 @@
 	<p>No hay registros disponibles</p>
 @endif
 </div>
+@stop
+@section('moreJs')
+<script type="text/javascript">
+    $('#tab').dataTable( {
+    "order": [[ 0, 'des' ]]
+} );
+</script>
 @stop

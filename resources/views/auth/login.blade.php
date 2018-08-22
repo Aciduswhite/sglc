@@ -22,9 +22,9 @@
     <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
 
         <div class="text-center">
-            <br/><br/>
+            <br/><br/><br/><br/>
 
-            <img src="assets/images/logo-fraktal.png" alt="" height="200"/>
+            <img src="assets/images/logo-fraktal.png" alt="" height="92"/>
         </div>
 
         <form id="Formvalidate" class="" action="login" role="form" method="post">

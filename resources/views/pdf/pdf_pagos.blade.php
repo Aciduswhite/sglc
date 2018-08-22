@@ -6,7 +6,7 @@
 	<div id="top">
 		<table width="100%">
 			<tr>
-				<td ><img src="img/logo.png" width="120" height="120"></td>
+				<td ><img src="img/logo.png" ></td>
 				<td>
 					<label>Folio de Pago: {{$pago->id_pago}}</label>
 					<br>

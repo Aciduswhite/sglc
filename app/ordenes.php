@@ -12,7 +12,9 @@ class ordenes extends Model
     'id_paciente',
     'id_convenio',
     'id_descuento',
-    'estatus_pago',];
+    'estatus_pago',
+    'status_resultado',
+    'file',];
     protected $primaryKey = 'id_orden';
     public $timestamps = false;
 
