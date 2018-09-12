@@ -61,12 +61,7 @@ class cotizacionesController extends Controller
 			$message->to($email)
 			->subject('Cotizacion Por Parte de Cedimi')
 			->attach($file);
-
 		});
-
-		return "<div class='alert alert-success alert-dismissable'>
-		<i class='fa fa-check'></i>
-		<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-		<b>Alerta!</b> El correo se ha enviado correctamente al correo ".$email.".</div>";
+		return view("Layout.welcome");
 	}
 }

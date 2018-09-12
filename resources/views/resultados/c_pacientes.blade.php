@@ -1,7 +1,6 @@
 @extends('Layout.panel')
 @section('content')
 <div class="content-body">
-    @if ($datos->count())
     <header class="panel_header">
         <h2 class="title pull-left">LISTA DE Ordenes</h2>
     </header>
@@ -41,8 +40,5 @@
         @endforeach
     </tbody>
 </table>
-@else
-<p>No hay registros disponibles</p>
-@endif
 </div>
 @stop

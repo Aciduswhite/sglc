@@ -94,7 +94,7 @@ class resultadosController extends Controller
     public function liberar_orden($id){
         $orden = ordenes::findorfail($id);
         $paciente = pacientes::findorfail($orden->id_paciente);
-        $name_pdf = $id."-".date("Y-m-d H-i-s")."-".$this->random().".pdf";
+        $name_pdf = $id."-".date("Y-m-d")."-".$this->random().".pdf";
         $estudios =0;
         $datos = array(
             'orden' =>$orden,

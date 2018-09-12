@@ -1,6 +1,5 @@
 @extends('Layout.panel')
 @section('content')
-@if ($datos->count())
 <div class="content-body">
     <header class="panel_header">
         <h2 class="title pull-left">ESTUDIOS</h2>
@@ -39,9 +38,6 @@
         @endforeach
     </tbody>
 </table>
-@else
-<p>No hay registros disponibles</p>
-@endif
 </div>
 @stop
 @section('moreJs')

@@ -2,7 +2,6 @@
 @section('content')
 <div class="content-body">
     @if ($datos->count())
-
     <header class="panel_header">
         <h2 class="title pull-left">LISTA DE PACIENTES POR COBRAR</h2>
     </header>
